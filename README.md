@@ -1,7 +1,7 @@
 # Sentence-level-Classification-using-Naive-Bayes
 I have used a real-time dataset from the Machine Learning Repository of Center for Machine Learning and Intelligent Systems at UCI to perfrom sentence-level classification. The corpus contains 972 annotated sentences from the abstract and introduction of 30 scientific articles for the training purpose. Naive Bayes was used as the classifier for the task. The classifer then classified 700+ sentences from over 300 scientific articles with an accuracy of over 60 percent. I used python 2.7 notebook for my implementation.
 
-# importing the required libraries
+#importing the required libraries
 
 import numpy as np
 import collections
