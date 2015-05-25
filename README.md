@@ -1,7 +1,7 @@
 # Sentence-level-Classification-using-Naive-Bayes
 I have used a real-time dataset from the Machine Learning Repository of Center for Machine Learning and Intelligent Systems at UCI to perfrom sentence-level classification. The corpus contains 972 annotated sentences from the abstract and introduction of 30 scientific articles for the training purpose. Naive Bayes was used as the classifier for the task. The classifer then classified 700+ sentences from over 300 scientific articles with an accuracy of over 60 percent. I used python 2.7 notebook for my implementation.
 
-importing the required libraries
+###importing the required libraries
 
 import numpy as np
 import collections
@@ -17,7 +17,7 @@ from nltk.tokenize import LineTokenizer
 from nltk.corpus import stopwords 
 from __future__ import division
 
-defining a function to extract and tokenize individual sentences from the corpus
+###defining a function to extract and tokenize individual sentences from the corpus
 
 def tokenize_sentences(Directory):
     label = {}
@@ -44,10 +44,9 @@ def tokenize_sentences(Directory):
                     break 
                 i += 1
                 k += 1
+     return label, normalized_sentence
     
-    return label, normalized_sentence
-    
-Function to store the tokenized training data in a CSV file
+###Function to store the tokenized training data in a CSV file
 
 def export_training_data_to_csv(filename):
     training_set = {}
@@ -65,35 +64,35 @@ def export_training_data_to_csv(filename):
             os.fsync(csvfile.fileno())
             csvfile.close()
             
-Setting the Directory for the corpus
+###Setting the Directory for the corpus
 Directory = "E:/binesh/MSc in Computing/Semester 2/Machine Learning/Datasets/SentenceCorpus/labeled_articles/training_dataset/"
 
-Setting the tokenizer
+###Setting the tokenizer
 tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
 os.chdir(r'E:/binesh/MSc in Computing/Semester 2/Machine Learning/Datasets/SentenceCorpus/labeled_articles/training_dataset')
 
-A call to the pre-defined function to tokenize the sentences
+###A call to the pre-defined function to tokenize the sentences
 label, normalized_sentence = tokenize_sentences(Directory)
 
-A function call to store the tokenized data in a CSV file named, training_data.csv
+###A function call to store the tokenized data in a CSV file named, training_data.csv
 export_training_data_to_csv('training_data.csv')
 
-Training the Naive Bayes Classifier
+###Training the Naive Bayes Classifier
 
 with open('training_data.csv','rb') as csvfile:
     C = NaiveBayesClassifier(csvfile,format = "csv")
 csvfile.close()
 
-Setting the directory for the test dataset
+###Setting the directory for the test dataset
 Directory = "E:/binesh/MSc in Computing/Semester 2/Machine Learning/Datasets/SentenceCorpus/labeled_articles/test_dataset/"
 os.chdir(r'E:/binesh/MSc in Computing/Semester 2/Machine Learning/Datasets/SentenceCorpus/labeled_articles/test_dataset/')
 
-Function call to tokenize the test dataset 
+###Function call to tokenize the test dataset 
 label, normalized_sentence = tokenize_sentences(Directory)
-#Storing the tokenized test dataset in a CSV file test_data.csv
+###Storing the tokenized test dataset in a CSV file test_data.csv
 export_training_data_to_csv('test_data.csv')
 
-Computing the accuracy of the Classifier using 30% of the labeled corpus as the test data
+###Computing the accuracy of the Classifier using 30% of the labeled corpus as the test data
 
 accuracy = 0
 line_number = 0
@@ -118,7 +117,7 @@ with open('test_data.csv','rb') as csvfile:
         csvfile.close()
 print format((accuracy/len(reader))* 100, '.2f') # Printing the accuracy of the Classifier
 
-Classifying unknown sentences and writing the results to a CSV file
+###Classifying unknown sentences and writing the results to a CSV file
 
 Directory = 'E:/binesh/MSc in Computing/Semester 2/Machine Learning/Datasets/SentenceCorpus/unlabeled_articles/unknown_sample/'
 os.chdir(r'E:/binesh/MSc in Computing/Semester 2/Machine Learning/Datasets/SentenceCorpus/unlabeled_articles/unknown_sample/')
